@@ -239,12 +239,12 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         "*** YOUR CODE HERE ***"
         # Format of result = [action, score]
         # Initial state: index = 0, depth = 0, alpha = -infinity, beta = +infinity
-        result = self.getBestActionAndScore(gameState, 0, 0, float("-inf"), float("inf"))
+        result = self.get_value(gameState, 0, 0, float("-inf"), float("inf"))
 
         # Return the action from result
         return result[0]
 
-    def getBestActionAndScore(self, game_state, index, depth, alpha, beta):
+    def get_value(self, game_state, index, depth, alpha, beta):
         """
         Returns value as pair of [action, score] based on the different cases:
         1. Terminal state
@@ -283,7 +283,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
 
             # Calculate the action-score for the current successor
             current_action, current_value \
-                = self.getBestActionAndScore(successor, successor_index, successor_depth, alpha, beta)
+                = self.get_value(successor, successor_index, successor_depth, alpha, beta)
 
             # Update max_value and max_action for maximizer agent
             if current_value > max_value:
@@ -320,7 +320,7 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
 
             # Calculate the action-score for the current successor
             current_action, current_value \
-                = self.getBestActionAndScore(successor, successor_index, successor_depth, alpha, beta)
+                = self.get_value(successor, successor_index, successor_depth, alpha, beta)
 
             # Update min_value and min_action for minimizer agent
             if current_value < min_value:
